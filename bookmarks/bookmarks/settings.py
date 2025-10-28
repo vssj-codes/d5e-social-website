@@ -33,22 +33,23 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    "account.apps.AccountConfig",
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "social_django",
-    "django_extensions",
-    'images.apps.ImagesConfig',
+    'account.apps.AccountConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'debug_toolbar',
+    'django_extensions',
     'easy_thumbnails',
+    'social_django',
     'actions.apps.ActionsConfig',
-
+    'images.apps.ImagesConfig',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -171,3 +172,7 @@ if DEBUG:
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
 }
+
+INTERNAL_IPS = [
+ '127.0.0.1',
+] 
